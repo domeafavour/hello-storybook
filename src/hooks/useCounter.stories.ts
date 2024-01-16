@@ -11,44 +11,23 @@ export default meta;
 
 type Story = StoryObj<typeof UseCounter>;
 
-const defaultCode = `
-function DefaultStory(args: Story) {
-  const [count, { increment }] = useCounter();
-  return (
-    <button type="button" onClick={increment}>
-      {count}
-    </button>
-  );
-}
-`;
-
-const initialCount3Code = `
-function InitialCount3Story() {
-  const [count, { increment }] = useCounter(3);
-  return (
-    <button type="button" onClick={increment}>
-      {count}
-    </button>
-  );
-}
-`;
-
 export const Default: Story = {
-  args: {
-    initialCount: 0,
-  },
+  args: {},
   parameters: {
     docs: {
       source: {
         // set language to jsx
         language: 'jsx',
-        code: defaultCode,
+        code: `
+  const [count, { increment, decrement }] = useCounter();
+`,
       },
     },
   },
 };
 
-export const InitialCount3: Story = {
+export const InitialCount: Story = {
+  // name: 'Initial Value',
   args: {
     initialCount: 3,
   },
@@ -57,7 +36,9 @@ export const InitialCount3: Story = {
       source: {
         // set language to jsx
         language: 'jsx',
-        code: initialCount3Code,
+        code: `
+  const [count, { increment, decrement }] = useCounter(3);
+`,
       },
     },
   },
